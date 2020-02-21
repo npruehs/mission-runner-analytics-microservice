@@ -8,7 +8,7 @@ import javax.annotation.PreDestroy;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,13 +28,15 @@ public class AnalyticsController {
 		producer = new KafkaProducer<>(props);
 	}
 	
-	@PostMapping("/analytics/post")
-	public void post(@RequestBody AnalyticsEvent event) {
+	@PutMapping("/analytics/put")
+	public String put(@RequestBody AnalyticsEvent event) {
 		if (event.getEventId() == null || event.getEventId().isEmpty()) {
 			throw new IllegalArgumentException("Missing event id.");
 		}
 		
 		producer.send(new ProducerRecord<String, String>("missionrunner", null, event.getEventId()));
+		
+		return "";
 	}
 	
 	@PreDestroy
