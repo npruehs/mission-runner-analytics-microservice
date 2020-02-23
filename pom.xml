@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>de.npruehs.missionrunner.analytics</groupId>
 	<artifactId>producer</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<name>producer</name>
 	<description>Apache Kafka producer for analytics data for the Mission Runner game.</description>
 
